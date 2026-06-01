@@ -1,3 +1,6 @@
+mod rules;
+mod schema;
+
 use pyo3::prelude::*;
 
 #[pymodule]
