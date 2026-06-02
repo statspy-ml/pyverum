@@ -35,9 +35,17 @@ struct PyValidationReport {
 impl PyValidationReport {
     fn __str__(&self) -> String {
         let mut out = String::new();
+        let total = self.results.len();
+        let passed = self.results.iter().filter(|r| r.pass).count();
+        let failed = total - passed;
+
         out.push_str(&format!(
             "Validation: {}\n",
             if self.checks_pass { "PASSED" } else { "FAILED" }
+        ));
+        out.push_str(&format!(
+            "Summary: {} rules | {} passed | {} failed\n",
+            total, passed, failed
         ));
         out.push_str(&"-".repeat(40));
         out.push('\n');
@@ -83,7 +91,7 @@ fn validate(schema_toml: &str, data: HashMap<String, Vec<String>>) -> PyResult<P
 #[cfg(feature = "extension-module")]
 #[pymodule]
 fn _pyverum(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    m.add("__version__", "0.1.2")?;
+    m.add("__version__", "0.1.3")?;
     m.add_function(wrap_pyfunction!(validate, m)?)?;
     m.add_class::<PyValidationReport>()?;
     m.add_class::<PyRuleResult>()?;

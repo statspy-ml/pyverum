@@ -29,3 +29,4 @@ dist/
 
 # Memory (Claude)
 memory/
+test.py
