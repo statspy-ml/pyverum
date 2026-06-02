@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "pyverum"
-version = "0.1.1"
+version = "0.1.2"
 description = "Rust-based data validator with Python bindings"
 readme = "README.md"
 license = { text = "MIT" }
@@ -16,4 +16,4 @@ dependencies = [
 [tool.maturin]
 python-source = "python"
 module-name = "pyverum._pyverum"
-features = ["pyo3/extension-module"]
+features = ["extension-module"]

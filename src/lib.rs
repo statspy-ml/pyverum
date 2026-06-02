@@ -9,6 +9,7 @@ use std::collections::HashMap;
 
 #[cfg(feature = "extension-module")]
 #[pyclass]
+#[derive(Clone)]
 struct PyRuleResult {
     #[pyo3(get)]
     column_name: String,
